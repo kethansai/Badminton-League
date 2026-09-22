@@ -1,0 +1,1 @@
+export const pagePaths = { home: '/', about: '/about', team: '/team', league: '/league', stats: '/stats' }

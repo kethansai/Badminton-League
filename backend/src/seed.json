@@ -1,0 +1,122 @@
+{
+  "site": {
+    "name": "American Badminton",
+    "accentName": "Premier League",
+    "logoUrl": "",
+    "logoAlt": "ABPL crest",
+    "contactEmail": "info@abplofficial.com",
+    "navigation": [
+      { "id": "home", "label": "Home", "visible": true },
+      { "id": "about", "label": "About", "visible": true },
+      { "id": "team", "label": "Team", "visible": true },
+      { "id": "league", "label": "League", "visible": true },
+      { "id": "stats", "label": "Stats", "visible": true }
+    ],
+    "announcements": [
+      { "id": "season", "text": "Season One Coming" },
+      { "id": "america", "text": "Badminton Built for America" },
+      { "id": "franchise", "text": "First-Ever Franchise League" }
+    ],
+    "footer": {
+      "tagline": "Badminton built for America.",
+      "exploreTitle": "Explore",
+      "connectTitle": "Connect",
+      "copyright": "American Badminton Premier League. All rights reserved.",
+      "established": "Est. 2025",
+      "socialLinks": [
+        { "id": "instagram", "label": "Instagram", "url": "" },
+        { "id": "twitter", "label": "X / Twitter", "url": "" },
+        { "id": "facebook", "label": "Facebook", "url": "" }
+      ]
+    }
+  },
+  "appearance": {
+    "colors": {
+      "navy950": "#060e15", "navy900": "#0c1a24", "navy800": "#16283a", "navy700": "#223c50",
+      "gold500": "#b8913a", "gold400": "#d4af61", "gold300": "#e6cc93",
+      "maroon600": "#4a1e23", "maroon500": "#632a30", "cream100": "#ede6de", "cream050": "#f7f3ec"
+    },
+    "displayFont": "Anton", "bodyFont": "Barlow", "utilityFont": "Barlow Condensed", "motionEnabled": true
+  },
+  "pages": {
+    "home": {
+      "metaTitle": "American Badminton Premier League \u2014 Badminton Built for America",
+      "metaDescription": "ABPL is the first-ever professional, city-based franchise league for badminton in the United States. Coming soon.",
+      "heroTitle": "American Badminton\nPremier League", "heroIntro": "",
+      "ctaTitle": "Be Here From Match One.", "ctaLabel": "Get In Touch", "ctaEnabled": true,
+      "tagline": "Badminton Built for America.", "sectionLabel": "What's Coming", "sectionTitle": "Season One Is Being Built", "sectionVisible": true,
+      "cards": [
+        { "id": "cities", "tag": "Coming Soon", "title": "Franchise Cities", "description": "City-based franchises across the country, each built to give badminton a true home crowd for the first time in America." },
+        { "id": "athletes", "tag": "Coming Soon", "title": "Pro Athletes", "description": "Top American and international badminton talent, competing under lights, in front of fans, on a professional stage." },
+        { "id": "season", "tag": "Coming Soon", "title": "Season One", "description": "Schedules, standings, and franchise announcements will land here as the league takes shape. Check back often." }
+      ]
+    },
+    "about": {
+      "metaTitle": "About \u2014 American Badminton Premier League",
+      "metaDescription": "The mission and vision behind ABPL, the first professional city-based badminton league in the United States.",
+      "heroTitle": "About ABPL",
+      "heroIntro": "Badminton is one of the most-played sports on earth, yet it's never had a true home in America. ABPL was created to change that. By building city-based franchises, we're giving communities a team to call their own and giving world-class athletes a stage worthy of their talent. This is more than a league \u2014 it's the beginning of badminton's American era.",
+      "ctaTitle": "Follow the Build.", "ctaLabel": "Get In Touch", "ctaEnabled": true,
+      "quote": "One city. One team. One fanbase at a time \u2014 built from the very first season of American badminton.", "sectionVisible": true,
+      "mission": { "label": "Our Mission", "title": "Give Badminton a Home in America.", "body": "ABPL's mission is to build professional badminton in America \u2014 one city, one team, one fanbase at a time. We're recruiting elite athletes, launching franchises, and creating the venues and broadcasts a real league needs. And we're doing it with the people who show up early \u2014 the fans, cities, and partners who help build this from the very first season." },
+      "vision": { "label": "Our Vision", "title": "A Franchise In Every Major City.", "body": "We see a future where badminton fills arenas across the country \u2014 where kids growing up in American cities have a hometown badminton team to call their own. ABPL is building toward a league where American-developed talent competes at the highest level, where Season One marks the start of a permanent home for the sport, and where \"Badminton Built for America\" isn't just a statement \u2014 it's the standard we're judged by." }
+    },
+    "team": {
+      "metaTitle": "Team \u2014 American Badminton Premier League",
+      "metaDescription": "The leadership team behind ABPL, the first professional city-based badminton league in the United States.",
+      "heroTitle": "Leadership", "heroIntro": "The people building ABPL from the ground up.",
+      "ctaTitle": "Join the Front Office.", "ctaLabel": "Get In Touch", "ctaEnabled": true,
+      "sectionTitle": "Leadership Team", "note": "This is a placeholder roster of leadership roles.", "emptyMessage": "Leadership announcements are coming soon.",
+      "members": [
+        { "id": "founder", "tag": "Founder", "name": "", "title": "Founder & League Commissioner", "bio": "Name TBD. Overseeing league strategy, franchise development, and the overall vision for ABPL.", "imageUrl": "", "imageAlt": "" },
+        { "id": "technical", "tag": "Placeholder", "name": "", "title": "Director: Technical", "bio": "Name TBD. Leading technical operations, match officiating standards, and competition rules.", "imageUrl": "", "imageAlt": "" },
+        { "id": "operations", "tag": "Placeholder", "name": "", "title": "Director: Operations", "bio": "Name TBD. Responsible for league operations, scheduling, and day-to-day franchise coordination.", "imageUrl": "", "imageAlt": "" },
+        { "id": "finance", "tag": "Placeholder", "name": "", "title": "Director: Finance", "bio": "Name TBD. Managing league finances, franchise budgets, and investor relations.", "imageUrl": "", "imageAlt": "" },
+        { "id": "public-relations", "tag": "Placeholder", "name": "", "title": "Director: Public Relations", "bio": "Name TBD. Leading press, public relations, and league communications.", "imageUrl": "", "imageAlt": "" },
+        { "id": "compliance", "tag": "Placeholder", "name": "", "title": "Director: Compliance", "bio": "Name TBD. Overseeing league regulations, governance, and organizational compliance.", "imageUrl": "", "imageAlt": "" }
+      ]
+    },
+    "league": {
+      "metaTitle": "League Info \u2014 American Badminton Premier League",
+      "metaDescription": "The founding story and league format of ABPL, the first professional city-based badminton league in the United States.",
+      "heroTitle": "The Legacy", "heroIntro": "", "ctaTitle": "Season One Is Coming.", "ctaLabel": "Get In Touch", "ctaEnabled": true,
+      "storyLabel": "Founding Story", "storyTitle": "Est. 2025", "crestAlt": "ABPL crest, established 2025", "storyVisible": true,
+      "storyQuote": "Badminton is one of the most electric, fastest-growing sports in the world \u2014 and in 2025, it finally found its home in America. ABPL was founded to give this sport the professional stage it's always deserved: a city-based, franchise-driven league built from the ground up, for the athletes who play it and the fans who love it.",
+      "storyBody": "This is Season One \u2014 the very beginning. The cities, the franchises, the rosters are coming together right now, and this page will grow with every announcement. Getting in at the start means watching something real take shape, one milestone at a time.",
+      "formatLabel": "League Format", "formatTitle": "How ABPL Will Run", "note": "Exact team counts, cities, and rules are still being finalized.",
+      "items": [
+        { "id": "franchises", "title": "City-Based Franchises", "description": "Each franchise represents its own city, building a true home fanbase \u2014 the same model that's made America's biggest leagues thrive." },
+        { "id": "draft", "title": "Professional Roster, Draft-Built", "description": "Franchises are stocked with top American and international badminton talent through a structured player draft and signing process." },
+        { "id": "regular", "title": "Regular Season", "description": "Franchises face off across a home-and-away regular season, with team-format matches spanning singles, doubles, and mixed doubles." },
+        { "id": "playoffs", "title": "Playoffs & Championship", "description": "Top franchises advance to a playoff bracket, culminating in a championship final to crown Season One's champion." }
+      ]
+    },
+    "stats": {
+      "metaTitle": "Stats \u2014 American Badminton Premier League",
+      "metaDescription": "Franchise cities, team names, and Season One details for ABPL, the first professional city-based badminton league in the United States.",
+      "heroTitle": "League Stats", "heroIntro": "", "ctaTitle": "Season One Is Coming.", "ctaLabel": "Get In Touch", "ctaEnabled": true,
+      "sectionLabel": "Franchises", "sectionTitle": "Cities & Team Names", "emptyMessage": "Franchise announcements are coming soon.",
+      "franchises": [
+        { "id": "franchise-1", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-2", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-3", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-4", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-5", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-6", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-7", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" },
+        { "id": "franchise-8", "tag": "Placeholder", "city": "City TBD", "team": "Team name to be announced.", "imageUrl": "", "imageAlt": "" }
+      ],
+      "detailsLabel": "Season One", "detailsTitle": "Key Details", "note": "Cities, team names, and Season One details shown here are placeholders.",
+      "details": [
+        { "id": "count", "title": "Number of Franchises", "description": "TBD \u2014 final franchise count will be announced as cities are confirmed." },
+        { "id": "start", "title": "Season Start", "description": "Date to be announced. Follow the League page for the latest timeline." },
+        { "id": "format", "title": "Regular Season Format", "description": "Home-and-away matches across singles, doubles, and mixed doubles \u2014 details to be finalized." },
+        { "id": "championship", "title": "Playoffs & Championship", "description": "Top franchises will advance to a playoff bracket, culminating in a championship final." }
+      ]
+    },
+    "notFound": {
+      "metaTitle": "Page Not Found \u2014 American Badminton Premier League", "metaDescription": "The requested ABPL page could not be found.",
+      "heroTitle": "Page Not Found", "heroIntro": "This page does not exist.", "linkLabel": "Back to Home"
+    }
+  }
+}
