@@ -10,6 +10,7 @@ if (!process.env.SESSION_SECRET || process.env.SESSION_SECRET.length < 32) throw
 const config = {
   sessionSecret: process.env.SESSION_SECRET,
   secureCookies: process.env.COOKIE_SECURE === 'true',
+  cookieSameSite: process.env.COOKIE_SAME_SITE || (process.env.COOKIE_SECURE === 'true' ? 'none' : 'strict'),
   trustProxy: process.env.TRUST_PROXY === 'true',
   allowedOrigins: (process.env.ALLOWED_ORIGINS || 'http://localhost:8080,http://127.0.0.1:8080,http://localhost:5173,http://127.0.0.1:5173')
     .split(',').map((origin) => new URL(origin.trim()).origin),

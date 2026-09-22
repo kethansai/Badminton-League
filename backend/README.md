@@ -15,13 +15,14 @@ ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin@123
 SESSION_SECRET=local-development-only-change-this-session-secret-before-deploying
 COOKIE_SECURE=false
+COOKIE_SAME_SITE=strict
 TRUST_PROXY=false
 ALLOWED_ORIGINS=http://localhost:8080,http://127.0.0.1:8080,http://localhost:5173,http://127.0.0.1:5173
 ```
 
 The server requires `DATABASE_URL` or PostgreSQL connection variables (`PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, `PGPASSWORD`), plus a `SESSION_SECRET` of at least 32 characters.
 
-`ADMIN_USERNAME` and `ADMIN_PASSWORD` are used only to seed a missing account. Defaults are `admin` and `admin@123`, for local development. Existing passwords are never reset on startup. `COOKIE_SECURE=true` requires HTTPS. Enable `TRUST_PROXY=true` only behind the trusted deployment proxy. When the frontend is deployed separately, set `ALLOWED_ORIGINS` to its exact HTTPS origin; the API provides credentialed CORS responses.
+`ADMIN_USERNAME` and `ADMIN_PASSWORD` are used only to seed a missing account. Defaults are `admin` and `admin@123`, for local development. Existing passwords are never reset on startup. `COOKIE_SECURE=true` requires HTTPS. Use `COOKIE_SAME_SITE=none` when the frontend and API are separate services; it requires `COOKIE_SECURE=true`. Enable `TRUST_PROXY=true` only behind the trusted deployment proxy. When the frontend is deployed separately, set `ALLOWED_ORIGINS` to its exact HTTPS origin; the API provides credentialed CORS responses.
 
 ## API
 

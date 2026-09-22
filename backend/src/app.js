@@ -50,7 +50,7 @@ export function createApp({ repository, sessionStore, config, logger = console, 
     resave: false,
     saveUninitialized: false,
     rolling: true,
-    cookie: { httpOnly: true, sameSite: 'strict', secure: config.secureCookies, maxAge: 8 * 60 * 60 * 1000, path: '/' },
+    cookie: { httpOnly: true, sameSite: config.cookieSameSite || 'strict', secure: config.secureCookies, maxAge: 8 * 60 * 60 * 1000, path: '/' },
   }))
 
   function requireAdmin(request, response, next) {
