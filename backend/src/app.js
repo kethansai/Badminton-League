@@ -17,7 +17,7 @@ export function createApp({ repository, sessionStore, config, logger = console, 
   if (!sessionStore) throw new Error('A persistent session store is required.')
   const app = express()
   app.disable('x-powered-by')
-  if (config.trustProxy) app.set('trust proxy', 1)
+  if (config.trustProxy) app.set('trust proxy', true)
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }))
   app.use(express.json({ limit: '1mb' }))
   app.use((request, response, next) => {
@@ -46,6 +46,7 @@ export function createApp({ repository, sessionStore, config, logger = console, 
     name: 'abpl.sid',
     secret: config.sessionSecret,
     store: sessionStore,
+    proxy: config.trustProxy,
     resave: false,
     saveUninitialized: false,
     rolling: true,
