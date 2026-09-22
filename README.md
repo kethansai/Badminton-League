@@ -4,7 +4,7 @@ The application has a Vue 3 frontend, an Express backend, and a PostgreSQL datab
 
 ## Run With Docker
 
-From this directory on a machine with Docker Compose:
+From this directory on a machine with Docker Compose and the required environment variables:
 
 ```sh
 docker compose up -d --build --wait
@@ -16,15 +16,17 @@ On this Windows machine, Docker runs in WSL:
 wsl.exe --exec docker compose -f /mnt/c/Users/vemurikethan/Desktop/badminton/docker-compose.yml up -d --build --wait
 ```
 
-- Public website: http://localhost:8080/
-- Administrator sign-in: http://localhost:8080/admin-login
-- Protected dashboard: http://localhost:8080/admin
+- Public website: the configured frontend service URL
+- Administrator sign-in: `<frontend-url>/admin-login`
+- Protected dashboard: `<frontend-url>/admin`
 - Initial username: `admin`
 - Initial password: `admin@123`
 
 There is no administrator link in public navigation or the footer. The login fields are not prefilled. A direct visit to `/admin` requires an authenticated session; the API independently checks authorization on every administrative request.
 
 The supplied defaults are for local development only. Services bind to loopback, not all network interfaces. Before exposing the site, change the administrator password in the Account screen, use a strong random `SESSION_SECRET`, change the database password, configure HTTPS, set `COOKIE_SECURE=true`, and set `ALLOWED_ORIGINS` to your exact public origin. The default secret and passwords are not suitable for deployment. A hidden route is not an access-control mechanism.
+
+For Dokploy, frontend and backend are deployed as separate services. The frontend Docker build requires `VITE_API_URL` to point to the backend origin, for example `https://abpl-api.kethan.dev`; this is a build argument because the Vue application is static. The backend uses the existing PostgreSQL service through `DATABASE_URL` and does not start a local database container.
 
 ## Configuration
 
@@ -41,6 +43,7 @@ Compose accepts the following environment overrides, including from a root `.env
 | `SESSION_SECRET` | Development-only value in Compose; replace before deployment |
 | `COOKIE_SECURE` | `false` locally; `true` with HTTPS |
 | `ALLOWED_ORIGINS` | localhost and 127.0.0.1 on ports 8080 and 5173 |
+| `VITE_API_URL` | Frontend build-time API origin, such as `https://abpl-api.kethan.dev` |
 
 If changing `WEB_PORT` or Vite's port, update `ALLOWED_ORIGINS` to include the actual origin as well.
 
@@ -70,7 +73,7 @@ npm --prefix frontend ci
 npm --prefix frontend run dev
 ```
 
-Use the WSL-prefixed Compose command on this Windows machine. Vite proxies `/api` to `http://127.0.0.1:3300`; `API_PROXY_TARGET` can override it. To work on backend source without rebuilding Docker, run only the database service, provide the variables documented in `backend/README.md`, install backend dependencies, and run `npm --prefix backend run dev`.
+Use the WSL-prefixed Compose command on this Windows machine. During local frontend development, Vite proxies `/api` to `http://127.0.0.1:3300`; `API_PROXY_TARGET` can override it. The deployment Compose file does not start PostgreSQL, so `DATABASE_URL` must point to an existing database. To work on backend source without rebuilding Docker, provide the variables documented in `backend/README.md`, install backend dependencies, and run `npm --prefix backend run dev`.
 
 ## Verification
 

@@ -1,6 +1,6 @@
 # ABPL Backend
 
-Express 5 API using PostgreSQL through `pg`. Runtime entry point: `src/server.js`. The root Docker Compose configuration starts this service with its database and health checks.
+Express 5 API using PostgreSQL through `pg`. Runtime entry point: `src/server.js`. The root Docker Compose configuration starts this service with health checks and an externally configured database.
 
 ## Configuration
 
@@ -21,7 +21,7 @@ ALLOWED_ORIGINS=http://localhost:8080,http://127.0.0.1:8080,http://localhost:517
 
 The server requires `DATABASE_URL` or PostgreSQL connection variables (`PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, `PGPASSWORD`), plus a `SESSION_SECRET` of at least 32 characters.
 
-`ADMIN_USERNAME` and `ADMIN_PASSWORD` are used only to seed a missing account. Defaults are `admin` and `admin@123`, for local development. Existing passwords are never reset on startup. `COOKIE_SECURE=true` requires HTTPS. Enable `TRUST_PROXY=true` only behind the trusted reverse proxy. The Compose backend is reachable only on loopback and uses the bundled nginx proxy.
+`ADMIN_USERNAME` and `ADMIN_PASSWORD` are used only to seed a missing account. Defaults are `admin` and `admin@123`, for local development. Existing passwords are never reset on startup. `COOKIE_SECURE=true` requires HTTPS. Enable `TRUST_PROXY=true` only behind the trusted deployment proxy. When the frontend is deployed separately, set `ALLOWED_ORIGINS` to its exact HTTPS origin; the API provides credentialed CORS responses.
 
 ## API
 

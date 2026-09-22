@@ -11,6 +11,8 @@ export class ApiError extends Error {
   }
 }
 
+const apiBaseUrl = import.meta.env.VITE_API_URL || ''
+
 export async function apiRequest(path, { method = 'GET', body } = {}) {
   const multipart = body instanceof FormData
   const headers = {}
@@ -18,8 +20,8 @@ export async function apiRequest(path, { method = 'GET', body } = {}) {
   if (method !== 'GET' && csrfToken) headers['X-CSRF-Token'] = csrfToken
   let response
   try {
-    response = await fetch(`/api${path}`, {
-      method, headers, credentials: 'same-origin',
+    response = await fetch(`${apiBaseUrl}/api${path}`, {
+      method, headers, credentials: 'include',
       body: body ? multipart ? body : JSON.stringify(body) : undefined,
       signal: AbortSignal.timeout(20000),
     })

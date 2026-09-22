@@ -20,11 +20,23 @@ export function createApp({ repository, sessionStore, config, logger = console, 
   if (config.trustProxy) app.set('trust proxy', 1)
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'same-site' } }))
   app.use(express.json({ limit: '1mb' }))
+  app.use((request, response, next) => {
+    const origin = request.get('origin')
+    if (origin && config.allowedOrigins.includes(origin)) {
+      response.set('Access-Control-Allow-Origin', origin)
+      response.set('Access-Control-Allow-Credentials', 'true')
+      response.set('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token')
+      response.set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS')
+      response.set('Vary', 'Origin')
+    }
+    if (request.method === 'OPTIONS') return response.sendStatus(204)
+    next()
+  })
   app.use('/api', (request, response, next) => {
     response.set('Cache-Control', 'no-store')
     if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method)) {
       const origin = request.get('origin')
-      if ((origin && !config.allowedOrigins.includes(origin)) || request.get('sec-fetch-site') === 'cross-site') {
+      if (origin && !config.allowedOrigins.includes(origin)) {
         return response.status(403).json({ error: 'Request origin is not allowed.' })
       }
     }

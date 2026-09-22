@@ -32,7 +32,7 @@ npm run preview
 
 `npm run test:watch` runs component tests in watch mode. Tests cover public routes, metadata, mobile navigation, biography cards, motion, admin authentication, field coverage, publishing, conflicts, and unsaved-edit protection. Tests use the backend seed document as a fixture; that fixture is not bundled into the application.
 
-The supplied Dockerfile builds the application and serves it with nginx. nginx proxies `/api` to the backend and provides Vue Router's HTML5-history fallback. If deploying `dist` elsewhere, configure both the same-origin API proxy and a fallback to `dist/index.html` for page requests, including legacy `.html` URLs and `/admin-login`. Vite development and preview servers already provide these behaviors.
+The supplied Dockerfile builds the application and serves it with nginx. nginx provides Vue Router's HTML5-history fallback; it does not proxy API requests. Set the build-time `VITE_API_URL` to the separately deployed backend origin, such as `https://abpl-api.kethan.dev`. If deploying `dist` elsewhere, configure a fallback to `dist/index.html` for page requests, including legacy `.html` URLs and `/admin-login`. Vite development and preview servers already provide these behaviors.
 
 The supplied deployment is rooted at `/`. Subdirectory deployment requires adapting Vite's base, nginx locations, and root-relative admin/public links. This is a client-rendered application, not a server-rendered or pre-rendered site.
 
@@ -54,7 +54,7 @@ Unknown routes show a not-found page with a link home.
 - `src/components`: public components and reusable administrative forms.
 - `src/admin/editor.js`: the complete editable field definition and collection helpers.
 - `src/stores/content.js`: published content, load/error state, navigation, and theme settings.
-- `src/services/api.js`: same-origin API requests and in-memory session/CSRF state. Passwords and tokens are not stored in localStorage.
+- `src/services/api.js`: API requests and in-memory session/CSRF state. Passwords and tokens are not stored in localStorage.
 - `src/data/site.js`: fixed public route paths.
 - `src/composables` and `src/directives`: media preferences and lifecycle-managed reveal effects.
 - `src/assets/style.css`: the migrated ABPL visual system and responsive styles.
