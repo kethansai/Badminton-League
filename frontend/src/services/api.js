@@ -2,6 +2,7 @@ import { ref } from 'vue'
 
 export const adminUser = ref(null)
 let csrfToken = ''
+let accessToken = typeof sessionStorage === 'undefined' ? '' : sessionStorage.getItem('abpl.accessToken') || ''
 
 export class ApiError extends Error {
   constructor(message, status = 0, issues = []) {
@@ -18,6 +19,7 @@ export async function apiRequest(path, { method = 'GET', body } = {}) {
   const headers = {}
   if (body && !multipart) headers['Content-Type'] = 'application/json'
   if (method !== 'GET' && csrfToken) headers['X-CSRF-Token'] = csrfToken
+  if (accessToken) headers.Authorization = `Bearer ${accessToken}`
   let response
   try {
     response = await fetch(`${apiBaseUrl}/api${path}`, {
@@ -42,12 +44,18 @@ export async function apiRequest(path, { method = 'GET', body } = {}) {
 function acceptSession(result) {
   adminUser.value = { username: result.username }
   csrfToken = result.csrfToken
+  if (result.accessToken) {
+    accessToken = result.accessToken
+    sessionStorage.setItem('abpl.accessToken', accessToken)
+  }
   return adminUser.value
 }
 
 export function clearSession() {
   adminUser.value = null
   csrfToken = ''
+  accessToken = ''
+  sessionStorage.removeItem('abpl.accessToken')
 }
 
 export async function checkSession() {

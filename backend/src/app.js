@@ -1,4 +1,4 @@
-import { randomBytes } from 'node:crypto'
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto'
 import express from 'express'
 import session from 'express-session'
 import { rateLimit } from 'express-rate-limit'
@@ -13,6 +13,26 @@ const credentialsSchema = z.strictObject({ username: z.string().trim().min(1).ma
 const passwordSchema = z.strictObject({ currentPassword: z.string().min(1).max(256), newPassword: z.string().min(12).max(256) })
 const dummyHash = await hashPassword(randomBytes(32).toString('hex'))
 
+function createAccessToken(sessionId, secret) {
+  const payload = `${sessionId}.${Date.now() + 8 * 60 * 60 * 1000}`
+  const encodedPayload = Buffer.from(payload).toString('base64url')
+  const signature = createHmac('sha256', secret).update(encodedPayload).digest('base64url')
+  return `${encodedPayload}.${signature}`
+}
+
+function verifyAccessToken(token, secret) {
+  const [encodedPayload, encodedSignature] = token.split('.')
+  if (!encodedPayload || !encodedSignature) return null
+  const expectedSignature = createHmac('sha256', secret).update(encodedPayload).digest()
+  const suppliedSignature = Buffer.from(encodedSignature, 'base64url')
+  if (expectedSignature.length !== suppliedSignature.length || !timingSafeEqual(expectedSignature, suppliedSignature)) return null
+  const payload = Buffer.from(encodedPayload, 'base64url').toString()
+  const separator = payload.lastIndexOf('.')
+  const sessionId = payload.slice(0, separator)
+  const expiresAt = Number(payload.slice(separator + 1))
+  return sessionId && Number.isSafeInteger(expiresAt) && expiresAt > Date.now() ? sessionId : null
+}
+
 export function createApp({ repository, sessionStore, config, logger = console, loginLimit = 10 }) {
   if (!sessionStore) throw new Error('A persistent session store is required.')
   const app = express()
@@ -25,7 +45,7 @@ export function createApp({ repository, sessionStore, config, logger = console, 
     if (origin && config.allowedOrigins.includes(origin)) {
       response.set('Access-Control-Allow-Origin', origin)
       response.set('Access-Control-Allow-Credentials', 'true')
-      response.set('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token')
+      response.set('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, Authorization')
       response.set('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS')
       response.set('Vary', 'Origin')
     }
@@ -52,6 +72,21 @@ export function createApp({ repository, sessionStore, config, logger = console, 
     rolling: true,
     cookie: { httpOnly: true, sameSite: config.cookieSameSite || 'strict', secure: config.secureCookies, maxAge: 8 * 60 * 60 * 1000, path: '/' },
   }))
+  app.use((request, response, next) => {
+    if (request.session.adminId) return next()
+    const authorization = request.get('authorization')
+    if (!authorization?.startsWith('Bearer ')) return next()
+    const sessionId = verifyAccessToken(authorization.slice(7), config.sessionSecret)
+    if (!sessionId) return next()
+    sessionStore.get(sessionId, (error, storedSession) => {
+      if (error) return next(error)
+      if (storedSession) {
+        Object.assign(request.session, storedSession)
+        request.sessionID = sessionId
+      }
+      next()
+    })
+  })
 
   function requireAdmin(request, response, next) {
     if (!request.session.adminId) return response.status(401).json({ error: 'Sign in to continue.' })
@@ -88,7 +123,7 @@ export function createApp({ repository, sessionStore, config, logger = console, 
     request.session.username = admin.username
     request.session.csrfToken = randomBytes(32).toString('hex')
     await new Promise((resolve, reject) => request.session.save((error) => error ? reject(error) : resolve()))
-    sendSession(request, response)
+    response.json({ username: request.session.username, csrfToken: request.session.csrfToken, accessToken: createAccessToken(request.sessionID, config.sessionSecret) })
   })
 
   app.get('/api/admin/session', requireAdmin, sendSession)
