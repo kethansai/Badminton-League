@@ -8,8 +8,10 @@ import SiteFooter from './components/SiteFooter.vue'
 import SiteSkeleton from './components/SiteSkeleton.vue'
 import { useMediaQuery } from './composables/useMediaQuery.js'
 import { usePointerEffects } from './composables/usePointerEffects.js'
-import { contentError, contentLoading, loadSiteContent, logoUrl, publicTheme, siteContent } from './stores/content.js'
+import { useScrollScenes } from './composables/useScrollScenes.js'
+import { contentError, contentLoading, contentRevision, loadSiteContent, logoUrl, publicTheme, siteContent } from './stores/content.js'
 import { holdRouteScroll, releaseRouteScroll } from './routeScroll.js'
+import { startBootLoader } from './bootLoader.js'
 
 const route = useRoute()
 const mainContent = ref(null)
@@ -21,6 +23,11 @@ const curtainState = ref('idle')
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const adminLayout = computed(() => Boolean(route.meta.admin))
 const page = computed(() => siteContent.value?.pages[route.meta.page || 'notFound'])
+// null while a route is leaving; bumped once the next route has entered so scroll scenes bind to fresh DOM.
+const sceneRevision = ref(0)
+let scenesBuilt = 0
+useScrollScenes(publicRoot, computed(() => sceneRevision.value === null ? null : `${sceneRevision.value}:${contentRevision.value}`))
+const stopBootLoader = startBootLoader(computed(() => adminLayout.value || Boolean(siteContent.value) || Boolean(contentError.value)))
 
 function refreshPublicContent() {
   if (!adminLayout.value) return loadSiteContent({ force: true })
@@ -30,6 +37,7 @@ function holdRouteHeight(element) {
   if (routeStage.value) routeStage.value.style.minHeight = `${element.offsetHeight}px`
   element.setAttribute('inert', '')
   element.setAttribute('aria-hidden', 'true')
+  sceneRevision.value = null
   if (reducedMotion.value) return
   // The curtain covers the outgoing page; the router resets scroll only once it is hidden.
   curtainState.value = 'cover'
@@ -51,6 +59,7 @@ function finishRouteTransition(element) {
   element?.removeAttribute('inert')
   element?.removeAttribute('aria-hidden')
   mainContent.value?.focus({ preventScroll: true })
+  sceneRevision.value = ++scenesBuilt
 }
 
 function cancelRouteLeave(element) {
@@ -88,7 +97,10 @@ onMounted(() => {
   if (!adminLayout.value) loadSiteContent()
   window.addEventListener('focus', refreshPublicContent)
 })
-onBeforeUnmount(() => window.removeEventListener('focus', refreshPublicContent))
+onBeforeUnmount(() => {
+  window.removeEventListener('focus', refreshPublicContent)
+  stopBootLoader()
+})
 </script>
 
 <template>
@@ -96,6 +108,7 @@ onBeforeUnmount(() => window.removeEventListener('focus', refreshPublicContent))
   <div v-else-if="siteContent" ref="publicRoot" class="public-site" :class="{ 'motion-disabled': !siteContent.appearance.motionEnabled }" :style="publicTheme">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div ref="cursor" class="cursor-follower" aria-hidden="true"><span></span></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="route-curtain" :data-state="curtainState" aria-hidden="true" @transitionend.self="settleCurtain"></div>
     <SiteHeader />
     <main id="main-content" ref="mainContent" tabindex="-1">

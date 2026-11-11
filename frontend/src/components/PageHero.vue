@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { ArrowDown, ArrowUpRight, Pause, Play, Star } from '@lucide/vue'
 import AmbientField from './AmbientField.vue'
@@ -8,6 +8,7 @@ import { photography } from '../data/photography.js'
 import { navigation, site } from '../stores/content.js'
 import { useMediaQuery } from '../composables/useMediaQuery.js'
 import { useViewportMotion } from '../composables/useViewportMotion.js'
+import { holdBoot } from '../bootLoader.js'
 
 const props = defineProps({
   title: { type: String, required: true },
@@ -26,6 +27,8 @@ const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const hero = ref(null)
 const shuttle = ref(null)
 const marquee = ref(null)
+const heroPhoto = ref(null)
+const releaseHeroPhoto = holdBoot()
 const heroMotion = useViewportMotion(hero)
 const marqueeMotion = useViewportMotion(marquee)
 const tickerPaused = ref(false)
@@ -33,6 +36,11 @@ const scenePaused = ref(false)
 const sceneActive = computed(() => heroMotion.value && !scenePaused.value)
 const heroImage = computed(() => photography[props.image] || photography.court)
 const leagueLink = computed(() => navigation.value.find((item) => item.name === 'league'))
+
+onMounted(() => {
+  if (heroPhoto.value?.complete) releaseHeroPhoto()
+})
+onBeforeUnmount(releaseHeroPhoto)
 
 watch(sceneActive, (active, previous, onCleanup) => {
   if (!active) return
@@ -66,7 +74,7 @@ watch(sceneActive, (active, previous, onCleanup) => {
 
 <template>
   <header ref="hero" class="hero" :class="{ 'hero-smash': home, 'hero-interior': !home }" :data-motion-paused="!sceneActive">
-    <img class="hero-photograph" :src="heroImage.src" alt="" aria-hidden="true" :width="heroImage.width" :height="heroImage.height" fetchpriority="high" />
+    <img ref="heroPhoto" class="hero-photograph" :src="heroImage.src" alt="" aria-hidden="true" :width="heroImage.width" :height="heroImage.height" fetchpriority="high" @load="releaseHeroPhoto" @error="releaseHeroPhoto" />
     <div class="hero-shade" aria-hidden="true"></div>
     <AmbientField v-if="!home" />
     <ShuttleScene v-if="home" ref="shuttle" :active="sceneActive" />

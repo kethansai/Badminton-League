@@ -15,10 +15,11 @@ let observers
 let animationFrames
 let nextFrameId
 
-const photoMotion = vi.hoisted(() => ({ scopes: [], fromTo: vi.fn(), registerPlugin: vi.fn() }))
+const photoMotion = vi.hoisted(() => ({ scopes: [], fromTo: vi.fn(), to: vi.fn(), registerPlugin: vi.fn() }))
 vi.mock('gsap', () => ({ gsap: {
   registerPlugin: photoMotion.registerPlugin,
   fromTo: photoMotion.fromTo,
+  to: photoMotion.to,
   context(callback) {
     const scope = { revert: vi.fn() }
     photoMotion.scopes.push(scope)
@@ -26,7 +27,7 @@ vi.mock('gsap', () => ({ gsap: {
     return scope
   },
 } }))
-vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: {} }))
+vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: { create: vi.fn() } }))
 
 function getMediaQuery(query) {
   if (!mediaQueries.has(query)) {
@@ -388,8 +389,9 @@ describe('team cards and motion', () => {
     })
     await renderRoute()
     await vi.dynamicImportSettled()
-    expect(photoMotion.fromTo).toHaveBeenCalledTimes(3)
-    const portrait = photoMotion.fromTo.mock.calls.find(([image]) => image.dataset.photoDepth === 'portrait')
+    const photoCalls = photoMotion.fromTo.mock.calls.filter(([target]) => target.dataset?.photoDepth)
+    expect(photoCalls).toHaveLength(3)
+    const portrait = photoCalls.find(([image]) => image.dataset.photoDepth === 'portrait')
     expect(portrait[1].scale).toBe(1.035)
     expect(portrait[2].scrollTrigger.scrub).toBe(0.6)
     const firstScope = photoMotion.scopes[0]

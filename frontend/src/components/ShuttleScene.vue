@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useMediaQuery } from '../composables/useMediaQuery.js'
+import { bootComplete, holdBoot } from '../bootLoader.js'
 import shuttlePoster from '../assets/shuttle-poster.png'
 import shuttlePosterMobile from '../assets/shuttle-poster-mobile.png'
 
@@ -12,6 +13,9 @@ let scene
 let resizeObserver
 let surface
 let disposed = false
+// The boot loader stays up until the 3D shuttle is built (or has fallen back to its poster).
+const releaseBoot = holdBoot()
+const sceneActive = () => props.active && bootComplete.value
 
 function measure() {
   if (!surface) return
@@ -41,7 +45,7 @@ function contextLost(event) {
   scene?.setActive(false)
 }
 
-watch(() => props.active, (active) => scene?.setActive(active))
+watch(sceneActive, (active) => scene?.setActive(active))
 watch(finePointer, resetPointer)
 
 onMounted(async () => {
@@ -52,7 +56,10 @@ onMounted(async () => {
     resizeObserver.observe(surface)
     resizeObserver.observe(surface.querySelector('.hero-inner'))
   }
-  if (!window.WebGL2RenderingContext) return
+  if (!window.WebGL2RenderingContext) {
+    releaseBoot()
+    return
+  }
   try {
     const [{ createShuttleScene }, { gsap }] = await Promise.all([import('../graphics/shuttle.js'), import('gsap')])
     if (disposed || !canvas.value) return
@@ -62,16 +69,20 @@ onMounted(async () => {
     surface.addEventListener('pointermove', move, { passive: true })
     surface.addEventListener('pointerleave', resetPointer)
     ready.value = true
-    scene.setActive(props.active)
+    // The introduction pose plays once the loader has gone, so visitors see it.
+    scene.setActive(sceneActive())
+    requestAnimationFrame(releaseBoot)
   } catch {
     scene?.dispose()
     scene = undefined
     ready.value = false
+    releaseBoot()
   }
 })
 
 onBeforeUnmount(() => {
   disposed = true
+  releaseBoot()
   resizeObserver?.disconnect()
   canvas.value?.removeEventListener('webglcontextlost', contextLost)
   surface?.removeEventListener('pointermove', move)
