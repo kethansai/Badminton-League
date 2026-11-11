@@ -11,14 +11,14 @@ const page = usePageContent('stats')
   <section class="section-alt">
     <div class="wrap">
       <div v-reveal class="section-head">
-        <span class="eyebrow">{{ page.sectionLabel }}</span>
         <h2>{{ page.sectionTitle }}</h2>
+        <p class="section-caption">{{ page.sectionLabel }}</p>
       </div>
-      <div v-if="page.franchises.length" class="card-grid">
+      <div v-if="page.franchises.length" class="card-grid franchise-grid">
         <article v-for="(franchise, index) in page.franchises" :key="franchise.id" v-reveal="index" class="card">
           <img v-if="franchise.imageUrl" class="franchise-image" :src="franchise.imageUrl" :alt="franchise.imageAlt || franchise.city" loading="lazy" />
-          <span v-if="franchise.tag" class="tag">{{ franchise.tag }}</span>
           <h3>{{ franchise.city }}</h3>
+          <span v-if="franchise.tag" class="tag">{{ franchise.tag }}</span>
           <p>{{ franchise.team }}</p>
         </article>
       </div>
@@ -28,10 +28,10 @@ const page = usePageContent('stats')
   <section>
     <div class="wrap">
       <div v-reveal class="section-head">
-        <span class="eyebrow">{{ page.detailsLabel }}</span>
         <h2>{{ page.detailsTitle }}</h2>
+        <p class="section-caption">{{ page.detailsLabel }}</p>
       </div>
-      <FormatList :items="page.details" />
+      <FormatList :items="page.details" :numbered="false" />
       <div v-if="page.note" class="callout">{{ page.note }}</div>
     </div>
   </section>

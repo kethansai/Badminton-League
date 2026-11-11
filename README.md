@@ -4,19 +4,22 @@ The application has a Vue 3 frontend, an Express backend, and a PostgreSQL datab
 
 ## Run With Docker
 
-From this directory on a machine with Docker Compose and the required environment variables:
+For local development, use the self-contained local Compose file to start PostgreSQL, the API, and the website with loopback-only ports. Its services extend the deployment definitions in `docker-compose.yml`, and it pins the project name to `abpl` so the existing `abpl_postgres_data` volume is reused:
 
 ```sh
-docker compose up -d --build --wait
+docker compose -f docker-compose.local.yml up -d --build --wait
 ```
+
+Do not run `docker-compose.yml` on its own locally: it is the deployment file and the API exits without `DATABASE_URL`.
 
 On this Windows machine, Docker runs in WSL:
 
 ```powershell
-wsl.exe --exec docker compose -f /mnt/c/Users/vemurikethan/Desktop/badminton/docker-compose.yml up -d --build --wait
+wsl.exe --cd /mnt/c/Users/vemurikethan/Desktop/badminton --exec docker compose -f docker-compose.local.yml up -d --build --wait
 ```
 
-- Public website: the configured frontend service URL
+- Public website: `http://localhost:8080`
+- Local API: `http://localhost:3300`
 - Administrator sign-in: `<frontend-url>/admin-login`
 - Protected dashboard: `<frontend-url>/admin`
 - Initial username: `admin`
@@ -26,11 +29,11 @@ There is no administrator link in public navigation or the footer. The login fie
 
 The supplied defaults are for local development only. Services bind to loopback, not all network interfaces. Before exposing the site, change the administrator password in the Account screen, use a strong random `SESSION_SECRET`, change the database password, configure HTTPS, set `COOKIE_SECURE=true`, and set `ALLOWED_ORIGINS` to your exact public origin. The default secret and passwords are not suitable for deployment. A hidden route is not an access-control mechanism.
 
-For Dokploy, frontend and backend are deployed as separate services. The frontend Docker build requires `VITE_API_URL` to point to the backend origin, for example `https://abpl-api.kethan.dev`; this is a build argument because the Vue application is static. The backend uses the existing PostgreSQL service through `DATABASE_URL` and does not start a local database container.
+For Dokploy, use `docker-compose.yml` without the local override. Frontend and backend are deployed as separate services. The frontend Docker build requires `VITE_API_URL` to point to the backend origin, for example `https://abpl-api.kethan.dev`; this is a build argument because the Vue application is static. The backend uses the existing PostgreSQL service through `DATABASE_URL` and does not start a local database container.
 
 ## Configuration
 
-Compose accepts the following environment overrides, including from a root `.env` that you manage locally. The repository does not contain an environment file; the defaults below work locally.
+The local override accepts the following environment overrides, including from a root `.env` that you manage locally. The repository does not contain an environment file. Missing-variable warnings from the deployment file are expected locally; the local override supplies the settings below.
 
 | Variable | Local default or purpose |
 | --- | --- |
@@ -40,9 +43,9 @@ Compose accepts the following environment overrides, including from a root `.env
 | `POSTGRES_DB` / `POSTGRES_USER` | `abpl` |
 | `POSTGRES_PASSWORD` | `abpl-local-change-me` |
 | `ADMIN_USERNAME` / `ADMIN_PASSWORD` | `admin` / `admin@123`, initial seed only |
-| `SESSION_SECRET` | Development-only value in Compose; replace before deployment |
-| `COOKIE_SECURE` | `false` locally; `true` with HTTPS |
-| `ALLOWED_ORIGINS` | localhost and 127.0.0.1 on ports 8080 and 5173 |
+| `SESSION_SECRET` | Fixed development-only value in the local override; configure separately for deployment |
+| `COOKIE_SECURE` | Fixed `false` locally; `true` in the deployment file |
+| `ALLOWED_ORIGINS` | Local override derives localhost and 127.0.0.1 origins from `WEB_PORT`, plus port 5173 |
 | `VITE_API_URL` | Frontend build-time API origin, such as `https://abpl-api.kethan.dev` |
 
 If changing `WEB_PORT` or Vite's port, update `ALLOWED_ORIGINS` to include the actual origin as well.
@@ -68,7 +71,7 @@ PostgreSQL stores site content, uploaded images, hashed administrator passwords,
 Use Node.js 22.12+ or Node.js 24 and npm. Start the containerized database and API:
 
 ```sh
-docker compose up -d --build --wait db backend
+docker compose -f docker-compose.local.yml up -d --build --wait db backend
 npm --prefix frontend ci
 npm --prefix frontend run dev
 ```

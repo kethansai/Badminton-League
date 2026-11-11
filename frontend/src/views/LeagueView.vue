@@ -8,7 +8,7 @@ const page = usePageContent('league')
 </script>
 
 <template>
-  <PageHero :title="page.heroTitle" :intro="page.heroIntro" />
+  <PageHero :title="page.heroTitle" :intro="page.heroIntro" image="doubles" />
   <section v-if="page.storyVisible" class="section-alt">
     <div class="wrap story">
       <div class="crest-frame">
@@ -18,8 +18,8 @@ const page = usePageContent('league')
         </div>
       </div>
       <div>
-        <span class="eyebrow">{{ page.storyLabel }}</span>
         <h2>{{ page.storyTitle }}</h2>
+        <p class="section-caption">{{ page.storyLabel }}</p>
         <ScrollQuote :text="page.storyQuote" />
         <p class="story-detail">{{ page.storyBody }}</p>
       </div>
@@ -28,8 +28,8 @@ const page = usePageContent('league')
   <section>
     <div class="wrap">
       <div v-reveal class="section-head">
-        <span class="eyebrow">{{ page.formatLabel }}</span>
         <h2>{{ page.formatTitle }}</h2>
+        <p class="section-caption">{{ page.formatLabel }}</p>
       </div>
       <FormatList :items="page.items" />
       <div v-if="page.note" class="callout">{{ page.note }}</div>

@@ -21,3 +21,16 @@ export function useMediaQuery(query) {
 
   return computed(() => matches.value || (query === '(prefers-reduced-motion: reduce)' && siteContent.value?.appearance.motionEnabled === false))
 }
+
+export function usePageVisibility() {
+  const visible = ref(true)
+  const update = () => { visible.value = !document.hidden }
+
+  onMounted(() => {
+    update()
+    document.addEventListener('visibilitychange', update)
+  })
+  onBeforeUnmount(() => document.removeEventListener('visibilitychange', update))
+
+  return visible
+}

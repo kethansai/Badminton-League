@@ -1,13 +1,24 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
-import { RefreshCw } from '@lucide/vue'
+import { ArrowUpRight, RefreshCw } from '@lucide/vue'
+import AmbientField from './components/AmbientField.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
+import SiteSkeleton from './components/SiteSkeleton.vue'
+import { useMediaQuery } from './composables/useMediaQuery.js'
+import { usePointerEffects } from './composables/usePointerEffects.js'
 import { contentError, contentLoading, loadSiteContent, logoUrl, publicTheme, siteContent } from './stores/content.js'
+import { holdRouteScroll, releaseRouteScroll } from './routeScroll.js'
 
 const route = useRoute()
 const mainContent = ref(null)
+const routeStage = ref(null)
+const publicRoot = ref(null)
+const cursor = ref(null)
+const { resetPointerEffects } = usePointerEffects(publicRoot, cursor)
+const curtainState = ref('idle')
+const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const adminLayout = computed(() => Boolean(route.meta.admin))
 const page = computed(() => siteContent.value?.pages[route.meta.page || 'notFound'])
 
@@ -15,7 +26,46 @@ function refreshPublicContent() {
   if (!adminLayout.value) return loadSiteContent({ force: true })
 }
 
+function holdRouteHeight(element) {
+  if (routeStage.value) routeStage.value.style.minHeight = `${element.offsetHeight}px`
+  element.setAttribute('inert', '')
+  element.setAttribute('aria-hidden', 'true')
+  if (reducedMotion.value) return
+  // The curtain covers the outgoing page; the router resets scroll only once it is hidden.
+  curtainState.value = 'cover'
+  holdRouteScroll()
+}
+
+function revealRoute() {
+  releaseRouteScroll()
+  if (curtainState.value === 'cover') curtainState.value = 'reveal'
+}
+
+function settleCurtain() {
+  if (curtainState.value === 'reveal') curtainState.value = 'idle'
+}
+
+function finishRouteTransition(element) {
+  releaseRouteScroll()
+  routeStage.value?.style.removeProperty('min-height')
+  element?.removeAttribute('inert')
+  element?.removeAttribute('aria-hidden')
+  mainContent.value?.focus({ preventScroll: true })
+}
+
+function cancelRouteLeave(element) {
+  revealRoute()
+  finishRouteTransition(element)
+}
+
+watch(reducedMotion, (reduced) => {
+  if (!reduced) return
+  releaseRouteScroll()
+  curtainState.value = 'idle'
+})
+
 watch(() => route.fullPath, async () => {
+  resetPointerEffects()
   await refreshPublicContent()
   await nextTick()
   mainContent.value?.focus({ preventScroll: true })
@@ -43,23 +93,30 @@ onBeforeUnmount(() => window.removeEventListener('focus', refreshPublicContent))
 
 <template>
   <RouterView v-if="adminLayout" />
-  <div v-else-if="siteContent" class="public-site" :class="{ 'motion-disabled': !siteContent.appearance.motionEnabled }" :style="publicTheme">
+  <div v-else-if="siteContent" ref="publicRoot" class="public-site" :class="{ 'motion-disabled': !siteContent.appearance.motionEnabled }" :style="publicTheme">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div :key="route.path" id="page-loader" aria-hidden="true"></div>
+    <div ref="cursor" class="cursor-follower" aria-hidden="true"><span></span></div>
+    <div class="route-curtain" :data-state="curtainState" aria-hidden="true" @transitionend.self="settleCurtain"></div>
     <SiteHeader />
     <main id="main-content" ref="mainContent" tabindex="-1">
-      <RouterView v-slot="{ Component }">
-        <component :is="Component" :key="route.path" />
-      </RouterView>
+      <div ref="routeStage" class="route-stage">
+        <RouterView v-slot="{ Component }">
+          <Transition name="route" mode="out-in" :css="!reducedMotion" @before-leave="holdRouteHeight" @after-leave="revealRoute" @after-enter="finishRouteTransition" @enter-cancelled="finishRouteTransition" @leave-cancelled="cancelRouteLeave">
+            <div :key="route.path" class="route-view"><component :is="Component" /></div>
+          </Transition>
+        </RouterView>
+      </div>
       <section v-if="page?.ctaEnabled" class="cta-banner">
+        <AmbientField :density="0.8" />
         <div class="wrap">
           <h2>{{ page.ctaTitle }}</h2>
-          <span class="cta-ring"><a class="btn btn-gold" :href="`mailto:${siteContent.site.contactEmail}`">{{ page.ctaLabel }}</a></span>
+          <span class="cta-ring"><a class="btn btn-gold" :href="`mailto:${siteContent.site.contactEmail}`">{{ page.ctaLabel }}<ArrowUpRight :size="18" aria-hidden="true" /></a></span>
         </div>
       </section>
     </main>
     <SiteFooter />
   </div>
+  <SiteSkeleton v-else-if="contentLoading || !contentError" :page="route.meta.page || 'home'" />
   <main v-else class="site-status" :aria-busy="contentLoading">
     <img :src="logoUrl" alt="ABPL crest" width="80" height="80" />
     <h1>{{ contentError ? 'Temporarily Unavailable' : 'American Badminton Premier League' }}</h1>

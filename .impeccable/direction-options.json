@@ -1,0 +1,150 @@
+{
+  "title": "ABPL: A Cinematic Redesign",
+  "question": "Choose the public site's new composition. Every option keeps ABPL content, the logo, the admin dashboard, and accessible motion.",
+  "buildPath": { "value": "code", "toggle": false },
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Courtside Cinema",
+      "kicker": "REFERENCE-LED DIRECTION",
+      "lineage": "Arena entrances, courtside photography, and the immersive scenes in your reels",
+      "thesis": "Enter the world of badminton before reading about the league.",
+      "palette": ["#080c0e", "#f4f4ef", "#d4af61", "#365b68"],
+      "materials": ["licensed court photography", "original 3D shuttle", "broadcast typography"],
+      "viewport": "A full-width court fills the opening. A large dimensional shuttle crosses the scene beside ABPL's title and a clear league link. Scrolling moves the camera into the league story.",
+      "risk": "The scene must remain legible on phones and degrade to a composed still without WebGL.",
+      "board": "../.playwright-mcp/reference-frames-Dd_UfShp32b.png",
+      "wireframe": {
+        "cols": 12,
+        "rows": 10,
+        "regions": [
+          { "label": "ABPL / navigation", "x": 0, "y": 0, "w": 12, "h": 1 },
+          { "label": "FULL-BLEED BADMINTON COURT", "x": 0, "y": 1, "w": 12, "h": 7 },
+          { "label": "ABPL title + league link", "x": 0, "y": 3, "w": 6, "h": 4, "accent": true },
+          { "label": "3D SHUTTLE", "x": 6, "y": 2, "w": 5, "h": 5, "accent": true },
+          { "label": "League story begins", "x": 0, "y": 8, "w": 12, "h": 2 }
+        ]
+      },
+      "raised": [
+        { "from": "Rocketship plate", "raise": "The shuttle's diagonal flight connects the opening scene to the next section." },
+        { "from": "Modular identity", "raise": "A repeatable image-and-type grammar carries the quieter inner pages." },
+        { "from": "Glazier partition", "raise": "Navigation and text retain clear boundaries over the spatial scene." },
+        { "from": "Curved shell", "raise": "The 3D silhouette must be recognizable even without decorative effects." },
+        { "from": "Fluid ink", "raise": "Pointer response settles naturally and never creates an idle render loop." },
+        { "from": "Rhythm machine", "raise": "Motion is choreographed as one sequence, with obvious pause and reduced-motion behavior." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Matchnight Broadcast",
+      "kicker": "ALTERNATE",
+      "lineage": "Sports broadcast openings and arena title graphics",
+      "thesis": "Present the league with the pace and clarity of a televised sports opening.",
+      "palette": ["#111719", "#f2f4f4", "#d4af61", "#4a1e23"],
+      "materials": ["action photography", "large flat typography", "horizontal programme strips"],
+      "viewport": "A wide action image, large league title, and fast typographic cuts lead into a structured league overview. The shuttle is a supporting object rather than the primary scene.",
+      "risk": "Clear and familiar, but closer to a conventional sports campaign than the spatial reels.",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "ABPL / navigation", "x": 0, "y": 0, "w": 12, "h": 1 },
+        { "label": "ACTION PHOTOGRAPH", "x": 0, "y": 1, "w": 12, "h": 5 },
+        { "label": "AMERICAN BADMINTON PREMIER LEAGUE", "x": 0, "y": 5, "w": 12, "h": 2, "accent": true },
+        { "label": "League / leadership / season", "x": 0, "y": 7, "w": 12, "h": 3 }
+      ] }
+    },
+    {
+      "id": "pop-culture-shelf-pulp-rocketship-plate",
+      "label": "Shuttle Flight Plate",
+      "verdict": "declined",
+      "lineage": "Pulp rocketship illustration translated to shuttle flight",
+      "thesis": "Follow a shuttle's diagonal flight through an illustrated league story.",
+      "palette": ["#812b26", "#15243e", "#c2bab0"],
+      "materials": ["painted plates", "streamlined lettering"],
+      "viewport": "A diagonal shuttle illustration and title dominate a single poster-like plate.",
+      "case": "Weaker sports identification and content clarity than a real court scene; the retro treatment diverges from the reels.",
+      "kept": "Purposeful diagonal travel.",
+      "risk": "Illustration can make the professional league feel like a fictional story.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-pulp-rocketship-plate-hero.webp"
+    },
+    {
+      "id": "studio-dumbar-identity",
+      "label": "League Motion Identity",
+      "verdict": "declined",
+      "lineage": "Modular photographic identity systems",
+      "thesis": "Organize league stories through bold colored bands and sports photography.",
+      "palette": ["#00a8cb", "#d82470", "#f5d529", "#eeeeec"],
+      "materials": ["photography", "flat color bands"],
+      "viewport": "An action photograph sits underneath large, modular blocks of league information.",
+      "case": "The graphic identity competes with the requested immersive sporting scene and makes the content feel like an agency portfolio.",
+      "kept": "A repeatable system across every public route.",
+      "risk": "Multiple saturated bands can overwhelm the retained ABPL identity.",
+      "hero": "https://impeccable.style/worlds/cards/studio-dumbar-identity-hero.webp"
+    },
+    {
+      "id": "craft-making-glazier-colorfield-partition",
+      "label": "Arena Window",
+      "verdict": "declined",
+      "lineage": "Glazed architectural partitions",
+      "thesis": "Read league content through a precise grid of photographic panes.",
+      "palette": ["#121517", "#eceeed", "#255ab4", "#9b6829"],
+      "materials": ["glass panes", "black framing"],
+      "viewport": "The court and league stories appear in an organized window-like grid.",
+      "case": "The panes fragment the scene and return to the boxed composition the user wants to leave behind.",
+      "kept": "Strong separation between controls and image detail.",
+      "risk": "Can read as a dashboard rather than a sports experience.",
+      "hero": "https://impeccable.style/worlds/cards/craft-making-glazier-colorfield-partition-hero.webp"
+    },
+    {
+      "id": "paper-folds-pleats-deployable-curved-crease-shell",
+      "label": "Feather Structure",
+      "verdict": "declined",
+      "lineage": "Curved material studies",
+      "thesis": "Use a close study of the shuttle's feather structure as the primary experience.",
+      "palette": ["#e6e5df", "#383c3d", "#aaaead"],
+      "materials": ["folded forms", "soft dimensional shadows"],
+      "viewport": "An enlarged feather structure floats above compact league information.",
+      "case": "Equipment abstraction obscures both the league identity and its public content.",
+      "kept": "A recognizable three-dimensional silhouette.",
+      "risk": "Can feel like an industrial-design study instead of ABPL.",
+      "hero": "https://impeccable.style/worlds/cards/paper-folds-pleats-deployable-curved-crease-shell-hero.webp"
+    },
+    {
+      "id": "medium-native-fluid-ink-basin",
+      "label": "Rally Currents",
+      "verdict": "declined",
+      "lineage": "Fluid interaction studies",
+      "thesis": "Let pointer motion shape a fluid surface behind league content.",
+      "palette": ["#222f61", "#181c24", "#f0f2ed"],
+      "materials": ["fluid fields", "still typography"],
+      "viewport": "Pointer-driven currents fill the page around the league title.",
+      "case": "Fluid effects do not communicate badminton and reduce clarity without adding product meaning.",
+      "kept": "Natural, bounded interactive response.",
+      "risk": "GPU cost would be spent on an unrelated visual metaphor.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-fluid-ink-basin-hero.webp"
+    },
+    {
+      "id": "signals-instruments-drum-machine-step-row",
+      "label": "Rally Sequence",
+      "verdict": "declined",
+      "lineage": "Rhythm-machine control rows",
+      "thesis": "Sequence league chapters through a tactile row of illuminated steps.",
+      "palette": ["#1e2022", "#dc403b", "#e4b83a", "#eeeeea"],
+      "materials": ["instrument panels", "illuminated keys"],
+      "viewport": "A step-row interface selects league chapters over a court photograph.",
+      "case": "The control metaphor suggests a music tool and obscures normal site navigation.",
+      "kept": "One deliberate rhythm with explicit motion controls.",
+      "risk": "Unfamiliar navigation introduces work without helping visitors explore ABPL.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-drum-machine-step-row-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "steer": true,
+  "canon": true,
+  "canonCard": {
+    "label": "Conventional League Website",
+    "thesis": "A standard sports website with polished photography and navigation.",
+    "palette": ["#0c1a24", "#f4f4ef", "#d4af61"],
+    "materials": ["sports photography", "structured content grid"],
+    "viewport": "A familiar title and image hero leads into league information.",
+    "risk": "Less immersive than the supplied references."
+  }
+}

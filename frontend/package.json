@@ -11,7 +11,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
     "@lucide/vue": "^1.45.0",
+    "gsap": "^3.15.1",
+    "three": "^0.187.0",
     "vue": "^3.5.42",
     "vue-router": "^5.3.1"
   },

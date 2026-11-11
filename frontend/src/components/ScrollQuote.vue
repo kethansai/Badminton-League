@@ -1,47 +1,42 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useMediaQuery } from '../composables/useMediaQuery.js'
+import { useViewportMotion } from '../composables/useViewportMotion.js'
 
 const props = defineProps({ text: { type: String, required: true } })
 const words = computed(() => props.text.trim().split(/\s+/))
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const quote = ref(null)
+const motionActive = useViewportMotion(quote)
 const highlightedCount = ref(0)
-let animationFrame = 0
 
-function update() {
-  animationFrame = 0
-  if (!quote.value) return
-  if (reducedMotion.value) {
-    highlightedCount.value = words.value.length
-    return
+watch([motionActive, words], ([active], previous, onCleanup) => {
+  if (!active) return
+  let animationFrame = 0
+
+  function update() {
+    animationFrame = 0
+    if (!quote.value) return
+    const midpoint = window.innerHeight * 0.55
+    highlightedCount.value = Array.from(quote.value.querySelectorAll('.qw')).filter((word) => {
+      const bounds = word.getBoundingClientRect()
+      return (bounds.top + bounds.bottom) / 2 < midpoint
+    }).length
   }
 
-  const midpoint = window.innerHeight * 0.55
-  highlightedCount.value = Array.from(quote.value.querySelectorAll('.qw')).filter((word) => {
-    const bounds = word.getBoundingClientRect()
-    return (bounds.top + bounds.bottom) / 2 < midpoint
-  }).length
-}
+  function scheduleUpdate() {
+    if (!animationFrame) animationFrame = requestAnimationFrame(update)
+  }
 
-function scheduleUpdate() {
-  if (!animationFrame) animationFrame = requestAnimationFrame(update)
-}
-
-watch(reducedMotion, update)
-watch(() => props.text, scheduleUpdate)
-
-onMounted(() => {
-  update()
+  scheduleUpdate()
   window.addEventListener('scroll', scheduleUpdate, { passive: true })
   window.addEventListener('resize', scheduleUpdate, { passive: true })
-})
-
-onBeforeUnmount(() => {
-  cancelAnimationFrame(animationFrame)
-  window.removeEventListener('scroll', scheduleUpdate)
-  window.removeEventListener('resize', scheduleUpdate)
-})
+  onCleanup(() => {
+    cancelAnimationFrame(animationFrame)
+    window.removeEventListener('scroll', scheduleUpdate)
+    window.removeEventListener('resize', scheduleUpdate)
+  })
+}, { flush: 'post' })
 </script>
 
 <template>

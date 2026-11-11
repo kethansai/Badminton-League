@@ -6,6 +6,7 @@ import LeagueView from './views/LeagueView.vue'
 import StatsView from './views/StatsView.vue'
 import NotFoundView from './views/NotFoundView.vue'
 import { checkSession } from './services/api.js'
+import { routeScrollReady } from './routeScroll.js'
 
 export const routes = [
   {
@@ -67,7 +68,8 @@ export function createAppRouter(history = createWebHistory(import.meta.env.BASE_
   const router = createRouter({
     history,
     routes,
-    scrollBehavior(to, from, savedPosition) {
+    async scrollBehavior(to, from, savedPosition) {
+      await routeScrollReady()
       if (savedPosition) return savedPosition
       if (to.hash) return { el: to.hash, top: 96 }
       return { left: 0, top: 0, behavior: 'instant' }

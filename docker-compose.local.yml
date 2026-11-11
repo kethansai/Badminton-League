@@ -1,0 +1,58 @@
+# Self-contained local stack. Run it alone:
+#   docker compose -f docker-compose.local.yml up -d --build --wait
+# Services extend the deployment definitions in docker-compose.yml, so combining both files also works.
+# The project name stays "abpl" so the existing abpl_postgres_data volume is reused.
+name: abpl
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-abpl}
+      POSTGRES_USER: ${POSTGRES_USER:-abpl}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-abpl-local-change-me}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-35432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  backend:
+    extends:
+      file: docker-compose.yml
+      service: backend
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-abpl}:${POSTGRES_PASSWORD:-abpl-local-change-me}@db:5432/${POSTGRES_DB:-abpl}
+      SESSION_SECRET: local-development-only-change-this-session-secret-before-deploying
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin@123}
+      COOKIE_SECURE: "false"
+      COOKIE_SAME_SITE: strict
+      TRUST_PROXY: "false"
+      ALLOWED_ORIGINS: http://localhost:${WEB_PORT:-8080},http://127.0.0.1:${WEB_PORT:-8080},http://localhost:5173,http://127.0.0.1:5173
+    ports:
+      - "127.0.0.1:${API_PORT:-3300}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    extends:
+      file: docker-compose.yml
+      service: frontend
+    build:
+      args:
+        VITE_API_URL: http://localhost:${API_PORT:-3300}
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

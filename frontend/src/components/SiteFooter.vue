@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { photography } from '../data/photography.js'
 import { logoUrl, navigation, site } from '../stores/content.js'
 </script>
 
@@ -34,5 +35,13 @@ import { logoUrl, navigation, site } from '../stores/content.js'
       <span>&copy; {{ site.footer.copyright }}</span>
       <span>{{ site.footer.established }}</span>
     </div>
+    <p class="wrap photo-context site-photo-context">Reference badminton photography, not ABPL events or participants. Images are cropped and color-treated for this site.</p>
+    <details class="wrap image-credits">
+      <summary>Asset credits</summary>
+      <ul>
+        <li v-for="image in photography" :key="image.source"><a :href="image.source" target="_blank" rel="noopener noreferrer">{{ image.title }}</a> by {{ image.author }}. <a :href="image.licenseUrl" target="_blank" rel="noopener noreferrer">{{ image.license }}</a>.</li>
+      </ul>
+      <p>Self-hosted fonts: <a href="/font-license-anton.txt" target="_blank" rel="noopener noreferrer">Anton</a>, <a href="/font-license-barlow.txt" target="_blank" rel="noopener noreferrer">Barlow</a>, and <a href="/font-license-barlow-condensed.txt" target="_blank" rel="noopener noreferrer">Barlow Condensed</a>.</p>
+    </details>
   </footer>
 </template>

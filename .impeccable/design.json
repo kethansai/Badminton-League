@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T09:09:34.1762954Z",
+  "title": "Design System: ABPL Public",
+  "extensions": {
+    "colorMeta": {
+      "navy-950": {
+        "role": "neutral", "displayName": "Darkest Navy Input",
+        "tonalRamp": ["oklch(from #060e15 15% c h)", "oklch(from #060e15 25% c h)", "oklch(from #060e15 35% c h)", "oklch(from #060e15 45% c h)", "oklch(from #060e15 55% c h)", "oklch(from #060e15 65% c h)", "oklch(from #060e15 80% c h)", "oklch(from #060e15 95% c h)"]
+      },
+      "navy-900": {
+        "role": "neutral", "displayName": "Inherited Dark Base",
+        "tonalRamp": ["oklch(from #0c1a24 15% c h)", "oklch(from #0c1a24 25% c h)", "oklch(from #0c1a24 35% c h)", "oklch(from #0c1a24 45% c h)", "oklch(from #0c1a24 55% c h)", "oklch(from #0c1a24 65% c h)", "oklch(from #0c1a24 80% c h)", "oklch(from #0c1a24 95% c h)"]
+      },
+      "navy-800": {
+        "role": "neutral", "displayName": "Raised Navy Input",
+        "tonalRamp": ["oklch(from #16283a 15% c h)", "oklch(from #16283a 25% c h)", "oklch(from #16283a 35% c h)", "oklch(from #16283a 45% c h)", "oklch(from #16283a 55% c h)", "oklch(from #16283a 65% c h)", "oklch(from #16283a 80% c h)", "oklch(from #16283a 95% c h)"]
+      },
+      "gold-500": {
+        "role": "primary", "displayName": "Rule Gold",
+        "tonalRamp": ["oklch(from #b8913a 15% c h)", "oklch(from #b8913a 25% c h)", "oklch(from #b8913a 35% c h)", "oklch(from #b8913a 45% c h)", "oklch(from #b8913a 55% c h)", "oklch(from #b8913a 65% c h)", "oklch(from #b8913a 80% c h)", "oklch(from #b8913a 95% c h)"]
+      },
+      "gold-400": {
+        "role": "primary", "displayName": "Retained Gold",
+        "tonalRamp": ["oklch(from #d4af61 15% c h)", "oklch(from #d4af61 25% c h)", "oklch(from #d4af61 35% c h)", "oklch(from #d4af61 45% c h)", "oklch(from #d4af61 55% c h)", "oklch(from #d4af61 65% c h)", "oklch(from #d4af61 80% c h)", "oklch(from #d4af61 95% c h)"]
+      },
+      "gold-300": {
+        "role": "primary", "displayName": "Light Gold",
+        "tonalRamp": ["oklch(from #e6cc93 15% c h)", "oklch(from #e6cc93 25% c h)", "oklch(from #e6cc93 35% c h)", "oklch(from #e6cc93 45% c h)", "oklch(from #e6cc93 55% c h)", "oklch(from #e6cc93 65% c h)", "oklch(from #e6cc93 80% c h)", "oklch(from #e6cc93 95% c h)"]
+      },
+      "maroon-600": {
+        "role": "secondary", "displayName": "Maroon Undertone",
+        "tonalRamp": ["oklch(from #4a1e23 15% c h)", "oklch(from #4a1e23 25% c h)", "oklch(from #4a1e23 35% c h)", "oklch(from #4a1e23 45% c h)", "oklch(from #4a1e23 55% c h)", "oklch(from #4a1e23 65% c h)", "oklch(from #4a1e23 80% c h)", "oklch(from #4a1e23 95% c h)"]
+      },
+      "cream-100": {
+        "role": "neutral", "displayName": "Warm Reading White",
+        "tonalRamp": ["oklch(from #ede6de 15% c h)", "oklch(from #ede6de 25% c h)", "oklch(from #ede6de 35% c h)", "oklch(from #ede6de 45% c h)", "oklch(from #ede6de 55% c h)", "oklch(from #ede6de 65% c h)", "oklch(from #ede6de 80% c h)", "oklch(from #ede6de 95% c h)"]
+      },
+      "cream-050": {
+        "role": "neutral", "displayName": "Chalk",
+        "tonalRamp": ["oklch(from #f7f3ec 15% c h)", "oklch(from #f7f3ec 25% c h)", "oklch(from #f7f3ec 35% c h)", "oklch(from #f7f3ec 45% c h)", "oklch(from #f7f3ec 55% c h)", "oklch(from #f7f3ec 65% c h)", "oklch(from #f7f3ec 80% c h)", "oklch(from #f7f3ec 95% c h)"]
+      },
+      "surface": {
+        "role": "neutral", "displayName": "Arena Ground",
+        "tonalRamp": ["oklch(from color-mix(in srgb, #060e15 72%, #101112) 15% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 25% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 35% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 45% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 55% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 65% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 80% c h)", "oklch(from color-mix(in srgb, #060e15 72%, #101112) 95% c h)"]
+      },
+      "surface-raised": {
+        "role": "neutral", "displayName": "Raised Arena",
+        "tonalRamp": ["oklch(from color-mix(in srgb, #16283a 44%, #151819) 15% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 25% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 35% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 45% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 55% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 65% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 80% c h)", "oklch(from color-mix(in srgb, #16283a 44%, #151819) 95% c h)"]
+      },
+      "line": {
+        "role": "neutral", "displayName": "Quiet Rule",
+        "tonalRamp": ["oklch(from #ede6de 15% c h)", "oklch(from #ede6de 25% c h)", "oklch(from #ede6de 35% c h)", "oklch(from #ede6de 45% c h)", "oklch(from #ede6de 55% c h)", "oklch(from #ede6de 65% c h)", "oklch(from #ede6de 80% c h)", "oklch(from #ede6de 95% c h)"]
+      },
+      "muted": {
+        "role": "neutral", "displayName": "Muted Reading White",
+        "tonalRamp": ["oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 15% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 25% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 35% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 45% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 55% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 65% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 80% c h)", "oklch(from color-mix(in srgb, #ede6de 76%, color-mix(in srgb, #060e15 72%, #101112)) 95% c h)"]
+      },
+      "cta-surface": {
+        "role": "secondary", "displayName": "Subdued Contact Band",
+        "tonalRamp": ["oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 15% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 25% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 35% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 45% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 55% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 65% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 80% c h)", "oklch(from color-mix(in srgb, #4a1e23 25%, color-mix(in srgb, #060e15 72%, #101112)) 95% c h)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Home Display", "purpose": "Wide Home title; stepped compact overrides are recorded in DESIGN.md." },
+      "display-interior": { "displayName": "Interior Display", "purpose": "Shared public inner-page hero titles." },
+      "headline": { "displayName": "Section Headline", "purpose": "Open public section headings, not compact-card titles." },
+      "title": { "displayName": "List Title", "purpose": "League facts and franchise records." },
+      "story-title": { "displayName": "Story Title", "purpose": "Home's open photographic articles." },
+      "member-title": { "displayName": "Member Title", "purpose": "Published leadership name or role on member faces." },
+      "body": { "displayName": "Reading Body", "purpose": "Inherited public reading base; actual component sizes override it." },
+      "story-body": { "displayName": "Story Body", "purpose": "Home descriptions, up to 46ch." },
+      "lede": { "displayName": "Hero Introduction", "purpose": "Readable hero intro and Home tagline, not utility capitals." },
+      "quote": { "displayName": "Narrative Quote", "purpose": "About and League passages, up to 32ch." },
+      "navigation": { "displayName": "Navigation", "purpose": "Condensed uppercase native navigation links." },
+      "button": { "displayName": "Action Label", "purpose": "Sentence-case public primary action text." }
+    },
+    "shadows": [
+      { "name": "member-interaction", "value": "0 20px 36px rgb(0 0 0 / 0.3)", "purpose": "Existing member tilt/focus shadow only; not a resting section elevation. Source: frontend/src/assets/style.css." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "CSS movement and fill reveals; source --ease-out." },
+      { "name": "ease-spring", "value": "cubic-bezier(0.34, 1.56, 0.64, 1)", "purpose": "Press/release and icon feedback; source --ease-spring." },
+      { "name": "primary-fill", "value": "0.28s var(--ease-out)", "purpose": "Primary link's bottom-origin light-gold hover/focus fill." },
+      { "name": "nav-underline", "value": "0.25s var(--ease-out)", "purpose": "Wide navigation's scaleX underline." },
+      { "name": "route-entry", "value": "0.22s; translateY(8px)", "purpose": "Opacity uses ease; movement uses --ease-out. Source: style.css and App.vue." },
+      { "name": "route-exit", "value": "0.12s ease", "purpose": "Opacity-only route exit; outgoing content is inert." },
+      { "name": "reveal", "value": "0.42s; translateY(18px); threshold 0.2", "purpose": "Opacity uses ease and translate uses --ease-out; focus/preferences reveal immediately. Source: style.css and directives/reveal.js." },
+      { "name": "reveal-stagger", "value": "0.06s per sibling; maximum 0.24s", "purpose": "Index clamped to 0..4 in directives/reveal.js." },
+      { "name": "photo-wide", "value": "yPercent -3.5 to 3.5; scale 1.12; scrub 0.6; ease none", "purpose": "Home wide photos only, top bottom to bottom top. GSAP context reverts when disabled/hidden/unmounted. Source: usePhotoParallax.js." },
+      { "name": "photo-portrait", "value": "yPercent -0.8 to 0.8; scale 1.035; scrub 0.6; ease none", "purpose": "Gentler Home portrait travel protects the subject crop. Source: usePhotoParallax.js." },
+      { "name": "photo-hover", "value": "scale(1.035); 0.7s var(--ease-out)", "purpose": "CSS story hover treatment; GSAP owns transform while photo parallax is active." },
+      { "name": "hero-parallax", "value": "offset -30px to 30px; photo 0.7x; wide text -0.25x", "purpose": "Home only; compact text transform is removed. Source: PageHero.vue and style.css." },
+      { "name": "shuttle-introduction", "value": "1.25s power3.out", "purpose": "First active scene introduction, no idle spin. Source: graphics/shuttle.js." },
+      { "name": "shuttle-response", "value": "0.65s power3.out", "purpose": "Bounded pointer [-1,1] and scroll [0,1] pose targets; overwrite previous tween and stop when settled. Source: graphics/shuttle.js." },
+      { "name": "magnetic-offset", "value": "-5px to 5px; 0.24s var(--ease-out)", "purpose": "Existing fine-pointer controls only; no native cursor replacement. Source: usePointerEffects.js and style.css." },
+      { "name": "member-tilt", "value": "rotateX -4deg to 4deg; rotateY -5deg to 5deg", "purpose": "Existing unflipped member interaction; reduced/coarse/forced-colors/hidden gates apply. Source: usePointerEffects.js." },
+      { "name": "member-flip", "value": "0.6s cubic-bezier(.4, .2, .2, 1); front response 0.2s", "purpose": "Native-button biography flip; not hover-only access. Source: TeamMemberCard.vue and style.css." },
+      { "name": "announcement-loop", "value": "18s linear infinite", "purpose": "Separate pause control; also pauses on hover/focus/offscreen/hidden and becomes a static wrapped list for disabled motion." },
+      { "name": "loading-shimmer", "value": "1.6s ease-in-out infinite", "purpose": "Skeleton only; pauses in hidden tabs and is disabled with reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "wide-title-max", "value": "1200px" },
+      { "name": "compact-public-max", "value": "960px" },
+      { "name": "record-grid-max", "value": "860px" },
+      { "name": "small-phone-max", "value": "380px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The native Home league link; shared square gold treatment also serves configured contact and recovery links.",
+      "html": "<a class=\"ds-primary\" href=\"/league\">Explore League<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a>",
+      "css": ".ds-primary{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:52px;padding:.85rem 1.35rem;border:0;border-radius:0;background:var(--gold-400,#d4af61);color:var(--navy-950,#060e15);font-family:var(--font-body,'Barlow',sans-serif);font-size:.92rem;font-weight:600;line-height:1.6;letter-spacing:0;text-decoration:none;isolation:isolate;overflow:hidden;transition:scale .26s var(--ease-spring,cubic-bezier(.34,1.56,.64,1))}.ds-primary::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--gold-300,#e6cc93);transform:scaleY(0);transform-origin:bottom;transition:transform .28s var(--ease-out,cubic-bezier(.16,1,.3,1))}.ds-primary:hover::before,.ds-primary:focus-visible::before{transform:scaleY(1)}.ds-primary:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}.ds-primary svg{flex-shrink:0;margin-left:1.4rem;transition:transform .24s var(--ease-spring,cubic-bezier(.34,1.56,.64,1))}.ds-primary:hover svg,.ds-primary:focus-visible svg{transform:translate(2px,-2px)}.ds-primary:active{scale:.96;transition-duration:.1s}.ds-primary:disabled{opacity:.55;cursor:not-allowed}@media(prefers-reduced-motion:reduce){.ds-primary,.ds-primary::before,.ds-primary svg{transition:none}.ds-primary:active{scale:none}.ds-primary svg{transform:none!important}}"
+    },
+    {
+      "name": "Story Scroll Link",
+      "kind": "button",
+      "refersTo": "scroll-link",
+      "description": "Circular native anchor to the visible Home preview. The backing surface is a panel-only arena preview.",
+      "html": "<div class=\"ds-arena\"><a class=\"ds-scroll\" href=\"/#league-preview\" aria-label=\"Explore season one\" title=\"Explore season one\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14m-7-7 7 7 7-7\"/></svg></a></div>",
+      "css": ".ds-arena{background:var(--surface,color-mix(in srgb,#060e15 72%,#101112));padding:1.5rem}.ds-scroll{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--line,color-mix(in srgb,#ede6de 18%,transparent));border-radius:50%;color:var(--cream-100,#ede6de);background:transparent;text-decoration:none;cursor:pointer}.ds-scroll:hover{background:rgb(255 255 255 / .09)}.ds-scroll:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}.ds-scroll svg{transition:transform .25s var(--ease-out,cubic-bezier(.16,1,.3,1))}.ds-scroll:hover svg{transform:translateY(3px)}@media(prefers-reduced-motion:reduce){.ds-scroll svg{transition:none}}"
+    },
+    {
+      "name": "Scene Motion Control",
+      "kind": "button",
+      "refersTo": "scene-toggle",
+      "description": "Running-state specimen. The real pause state, Play/Pause swap, and preference-driven visibility belong to PageHero.vue.",
+      "html": "<div class=\"ds-arena\"><button class=\"ds-motion\" type=\"button\" aria-pressed=\"false\" aria-label=\"Pause scene motion\" title=\"Pause scene motion\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"14\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"/><rect x=\"5\" y=\"3\" width=\"5\" height=\"18\" rx=\"1\"/></svg></button></div>",
+      "css": ".ds-arena{background:var(--surface,color-mix(in srgb,#060e15 72%,#101112));padding:1.5rem}.ds-motion{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line,color-mix(in srgb,#ede6de 18%,transparent));border-radius:50%;color:var(--cream-100,#ede6de);background:transparent;cursor:pointer}.ds-motion:hover{background:rgb(255 255 255 / .09)}.ds-motion:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}"
+    },
+    {
+      "name": "Public Navigation Links",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Wide native navigation with current-route emphasis. The arena-backed specimen is not the responsive Vue menu controller.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Primary navigation preview\"><a class=\"ds-nav-link\" href=\"/\" aria-current=\"page\">Home</a><a class=\"ds-nav-link\" href=\"/about\">About</a><a class=\"ds-nav-link\" href=\"/team\">Team</a><a class=\"ds-nav-link\" href=\"/league\">League</a><a class=\"ds-nav-link\" href=\"/stats\">Stats</a></nav>",
+      "css": ".ds-navigation{display:flex;flex-wrap:wrap;gap:1.8rem;padding:1.5rem;background:var(--surface,color-mix(in srgb,#060e15 72%,#101112));font-family:var(--font-utility,'Barlow Condensed',sans-serif);font-size:1rem;font-weight:600;line-height:1.6;letter-spacing:0;text-transform:uppercase}.ds-nav-link{position:relative;display:inline-block;min-height:44px;padding-block:.6rem;color:var(--cream-100,#ede6de);text-decoration:none;transition:scale .26s var(--ease-spring,cubic-bezier(.34,1.56,.64,1))}.ds-nav-link::after{content:'';position:absolute;inset:auto 0 4px;height:2px;background:var(--gold-400,#d4af61);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease-out,cubic-bezier(.16,1,.3,1))}.ds-nav-link:hover::after,.ds-nav-link:focus-visible::after,.ds-nav-link[aria-current='page']::after{transform:scaleX(1)}.ds-nav-link[aria-current='page']{color:var(--gold-400,#d4af61)}.ds-nav-link:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}.ds-nav-link:active{scale:.97;transition-duration:.1s}@media(prefers-reduced-motion:reduce){.ds-nav-link,.ds-nav-link::after{transition:none}.ds-nav-link:active{scale:none}}"
+    },
+    {
+      "name": "Published Story Status",
+      "kind": "chip",
+      "refersTo": "story-status",
+      "description": "Existing non-interactive status text, not a pill, filter, button, or heading kicker. Its small label size is not a new reading-text token.",
+      "html": "<div class=\"ds-arena\"><span class=\"ds-story-status\">Coming Soon</span></div>",
+      "css": ".ds-arena{background:var(--surface,color-mix(in srgb,#060e15 72%,#101112));padding:1.5rem}.ds-story-status{display:inline-block;margin-top:1rem;padding-bottom:.2rem;border-bottom:1px solid var(--gold-500,#b8913a);color:var(--gold-300,#e6cc93);font-family:var(--font-body,'Barlow',sans-serif);font-size:.78rem;font-weight:400;line-height:1.6;letter-spacing:0}"
+    },
+    {
+      "name": "Season Fact List",
+      "kind": "custom",
+      "refersTo": "fact-list",
+      "description": "Unnumbered FormatList variant with the actual seed's unannounced season details; no fabricated metrics.",
+      "html": "<div class=\"ds-facts\"><div class=\"ds-fact\"><div class=\"ds-fact-body\"><h3 class=\"ds-fact-title\">Number of Franchises</h3><p class=\"ds-fact-copy\">TBD &mdash; final franchise count will be announced as cities are confirmed.</p></div></div><div class=\"ds-fact\"><div class=\"ds-fact-body\"><h3 class=\"ds-fact-title\">Season Start</h3><p class=\"ds-fact-copy\">Date to be announced. Follow the League page for the latest timeline.</p></div></div></div>",
+      "css": ".ds-facts{display:grid;gap:1.1rem;padding:1.5rem;background:var(--surface,color-mix(in srgb,#060e15 72%,#101112))}.ds-fact{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;padding-block:1.8rem;border-bottom:1px solid var(--line,color-mix(in srgb,#ede6de 18%,transparent));transition:background .25s ease}.ds-fact:last-child{border-bottom:0}.ds-fact:hover{background:rgba(184,145,58,.05)}.ds-fact-title{margin:0 0 .35rem;font-family:var(--font-display,'Anton',sans-serif);font-size:1.8rem;font-weight:400;line-height:1.2;letter-spacing:0;text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere;color:var(--cream-050,#f7f3ec)}.ds-fact-copy{margin:0;max-width:72ch;font-family:var(--font-body,'Barlow',sans-serif);font-size:1.02rem;font-weight:400;line-height:1.6;letter-spacing:0;color:var(--muted,color-mix(in srgb,#ede6de 76%,color-mix(in srgb,#060e15 72%,#101112)));overflow-wrap:anywhere}@media(prefers-reduced-motion:reduce){.ds-fact{transition:none}}"
+    },
+    {
+      "name": "Leadership Placeholder Front",
+      "kind": "card",
+      "refersTo": "member-placeholder",
+      "description": "Front-state specimen using the real seed role and derived FL initials. The Vue component, not this HTML specimen, implements the biography flip and inert faces.",
+      "html": "<article class=\"ds-member\"><div class=\"ds-monogram\" aria-hidden=\"true\">FL</div><div class=\"ds-member-body\"><h3 class=\"ds-member-title\">Founder &amp; League Commissioner</h3><span class=\"ds-member-tag\">Founder</span></div><button class=\"ds-member-action\" type=\"button\" aria-expanded=\"false\" aria-label=\"Read biography for Founder &amp; League Commissioner\" title=\"Read biography for Founder &amp; League Commissioner\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button></article>",
+      "css": ".ds-member{position:relative;min-width:0;min-height:240px;border:1px solid var(--line,color-mix(in srgb,#ede6de 18%,transparent));border-radius:0;background:var(--surface-raised,color-mix(in srgb,#16283a 44%,#151819))}.ds-member:focus-within{box-shadow:0 20px 36px rgb(0 0 0 / .3)}.ds-monogram{display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin:1.5rem 1.5rem 0;border:1px solid var(--line,color-mix(in srgb,#ede6de 18%,transparent));color:color-mix(in srgb,var(--gold-400,#d4af61) 66%,var(--cream-100,#ede6de));font-family:var(--font-display,'Anton',sans-serif);font-size:2.2rem;font-weight:400;line-height:1;letter-spacing:0}.ds-member-body{padding:1rem 1.5rem 3.5rem}.ds-member-title{margin:.55rem 0 0;color:var(--cream-050,#f7f3ec);font-family:var(--font-display,'Anton',sans-serif);font-size:1.7rem;font-weight:400;line-height:1.2;letter-spacing:0;text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere}.ds-member-tag{display:block;margin-top:.6rem;font-family:var(--font-body,'Barlow',sans-serif);font-size:.8rem;font-weight:400;line-height:1.6;letter-spacing:0;color:var(--muted,color-mix(in srgb,#ede6de 76%,color-mix(in srgb,#060e15 72%,#101112)))}.ds-member-action{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;border-radius:0;background:transparent;color:var(--gold-400,#d4af61);cursor:pointer}.ds-member-action svg{position:absolute;right:1.2rem;bottom:1rem;transition:transform .24s var(--ease-spring,cubic-bezier(.34,1.56,.64,1))}.ds-member-action:hover svg{color:var(--gold-300,#e6cc93);transform:rotate(-8deg) scale(1.08)}.ds-member-action:active svg{transform:scale(.86)}.ds-member-action:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}@media(prefers-reduced-motion:reduce){.ds-member-action svg{transition:none;transform:none!important}}"
+    },
+    {
+      "name": "Expandable Asset Credits",
+      "kind": "custom",
+      "refersTo": "asset-credits",
+      "description": "Native details disclosure with source/license links and a visible reference-photo statement. The panel uses a compact sample of the actual footer credits.",
+      "html": "<div class=\"ds-credits-ground\"><p class=\"ds-photo-context\">Reference badminton photography, not ABPL events or participants. Images are cropped and color-treated for this site.</p><details class=\"ds-credits\"><summary class=\"ds-credits-summary\">Asset credits</summary><ul class=\"ds-credit-list\"><li><a class=\"ds-credit-link\" href=\"https://commons.wikimedia.org/wiki/File:Badminton_court_view.jpg\" target=\"_blank\" rel=\"noopener noreferrer\">Badminton court view</a> by Darakshanehaluddin. <a class=\"ds-credit-link\" href=\"https://creativecommons.org/publicdomain/zero/1.0/\" target=\"_blank\" rel=\"noopener noreferrer\">CC0 1.0</a>.</li></ul><p class=\"ds-font-credits\">Self-hosted fonts: <a class=\"ds-credit-link\" href=\"/font-license-anton.txt\">Anton</a>, <a class=\"ds-credit-link\" href=\"/font-license-barlow.txt\">Barlow</a>, and <a class=\"ds-credit-link\" href=\"/font-license-barlow-condensed.txt\">Barlow Condensed</a>.</p></details></div>",
+      "css": ".ds-credits-ground{background:var(--surface,color-mix(in srgb,#060e15 72%,#101112));padding:1.5rem;color:var(--muted,color-mix(in srgb,#ede6de 76%,color-mix(in srgb,#060e15 72%,#101112)));font-family:var(--font-body,'Barlow',sans-serif);font-size:.78rem;font-weight:400;line-height:1.6;letter-spacing:0}.ds-photo-context{margin:0 0 .7rem;line-height:1.5}.ds-credits{padding-block:0 1.5rem}.ds-credits-summary{width:fit-content;min-height:32px;cursor:pointer}.ds-credit-list{padding-left:1.2rem;line-height:1.8}.ds-font-credits{max-width:72ch}.ds-credit-link{color:inherit;text-decoration:underline;text-underline-offset:.2em;overflow-wrap:anywhere}.ds-credit-link:focus-visible,.ds-credits-summary:focus-visible{outline:2px solid var(--gold-400,#d4af61);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Courtside Cinema",
+    "overview": "ABPL's public world places a recognizable badminton court and an original dimensional shuttle behind an immediately readable league identity. Near-black arena surfaces, chalk and cream text, a retained gold accent, and natural photographic color give the experience its character. Condensed uppercase headings sit beside plain reading text and native navigation.\n\nDepth belongs to the sport: full-width photographs, a lit sixteen-feather shuttle, bounded scroll movement, and restrained tonal layers. Home uses asymmetric photographic stories; the inner pages use quieter lists, open sections, and compact real-record placeholders. Keep the existing ABPL name and crest, editable content, routes, and contact actions. The authenticated admin remains a separate task-focused visual system.",
+    "keyCharacteristics": [
+      "Full-width photographic scenes with unobstructed text and controls.",
+      "Editable gold accents and chalk/cream type over near-black arena surfaces.",
+      "Self-hosted Anton, Barlow, and Barlow Condensed at the shipped weights.",
+      "Square content edges, circular scene controls, and quiet dividing rules.",
+      "Bounded motion with a static, readable fallback and visible image attribution."
+    ],
+    "rules": [
+      { "name": "The Live Accent Rule", "body": "Resolve public colors through the saved appearance variables; the photographed court supplies additional color without becoming a second UI palette.", "section": "colors" },
+      { "name": "The Condensed Headline Rule", "body": "Use the configured display face for uppercase headings and the body face for reading; keep functional navigation in the utility face.", "section": "typography" },
+      { "name": "The Scene-First Depth Rule", "body": "Let photography, the lit shuttle and quiet tonal layers carry depth; reserve inherited card shadows and glare for the existing member interaction.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do preserve ABPL's name, crest, published content, native routes, and the separate task-focused admin.",
+      "Do resolve colors and fonts through the existing appearance variables and keep unknown people, cities, and results explicitly unannounced.",
+      "Do keep text, navigation, controls, and photo disclosure clear of the shuttle at each responsive composition.",
+      "Do retain real badminton imagery, source/license links, and same-model desktop/compact fallbacks.",
+      "Do keep motion bounded, optional, visibility-aware, and disposable without hiding content or keyboard actions."
+    ],
+    "donts": [
+      "Don't carry overridden legacy cards, decorative hero mesh, or unused palette values into new public surfaces as visible precedent.",
+      "Don't turn Home's photographic sequence into equal feature cards or frame the full-width scene inside a decorative panel.",
+      "Don't invent heading kickers, people, events, or endorsements; a real source disclosure or published status is not a decorative label.",
+      "Don't ban all gradients, shadows, or circles: the shipped world uses photographic shading, member interaction depth, and circular controls deliberately.",
+      "Don't treat the four-fix ship verdict, documentation specimens, or synthesized swatch ramps as whole-site certification or a new runtime source of truth."
+    ]
+  }
+}
